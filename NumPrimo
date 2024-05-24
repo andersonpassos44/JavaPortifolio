@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class NumeroPrimo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite um valor: ");
+        int valorRecebido = scanner.nextInt();
+        scanner.close();
+
+        boolean primo = numeroPrimo(valorRecebido);
+
+        if (primo) {
+            System.out.println(valorRecebido + " é Primo.");
+        } else{
+            System.out.println( valorRecebido + "não é Primo");
+        }
+
+
+    }
+    public static boolean numeroPrimo(int valorRecebido) {
+        if (valorRecebido <= 1) {
+            return false;
+
+        }
+        for (int i = 2; i <= Math.sqrt (valorRecebido); i++) {
+            if (valorRecebido % i == 0) {
+                return false;
+
+            }
+        }
+        return true;
+    }
+}
+
