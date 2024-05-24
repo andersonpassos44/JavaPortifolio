@@ -1,35 +1,55 @@
 import java.util.Scanner;
 
 public class NumeroPrimo {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite um valor: ");
-        int valorRecebido = scanner.nextInt();
+        String continuar;
+
+        do {
+            // Receber o número do usuário
+            System.out.print("Digite um número inteiro positivo: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Por favor, digite um número inteiro positivo.");
+                scanner.next(); // Descartar entrada inválida
+            }
+            int numero = scanner.nextInt();
+
+            // Verificar se o número é primo
+            boolean primo = verificarPrimo(numero);
+
+            // Exibir o resultado
+            if (primo) {
+                System.out.println(numero + " é primo.");
+            } else {
+                System.out.println(numero + " não é primo.");
+            }
+
+            // Perguntar se o usuário quer continuar e tratar entrada inválida
+            do {
+                System.out.print("Deseja verificar outro número? (s/n): ");
+                continuar = scanner.next();
+                if (!continuar.equalsIgnoreCase("s") && !continuar.equalsIgnoreCase("n")) {
+                    System.out.println("Entrada inválida. Por favor, digite 's' para sim ou 'n' para não.");
+                }
+            } while (!continuar.equalsIgnoreCase("s") && !continuar.equalsIgnoreCase("n"));
+
+        } while (continuar.equalsIgnoreCase("s"));
+
         scanner.close();
-
-        boolean primo = numeroPrimo(valorRecebido);
-
-        if (primo) {
-            System.out.println(valorRecebido + " é Primo.");
-        } else{
-            System.out.println( valorRecebido + "não é Primo");
-        }
-
-
     }
-    public static boolean numeroPrimo(int valorRecebido) {
-        if (valorRecebido <= 1) {
+
+    // Função para verificar se um número é primo
+    public static boolean verificarPrimo(int numero) {
+        if (numero <= 1) {
             return false;
-
         }
-        for (int i = 2; i <= Math.sqrt (valorRecebido); i++) {
-            if (valorRecebido % i == 0) {
+        for (int i = 2; i <= Math.sqrt(numero); i++) {
+            if (numero % i == 0) {
                 return false;
-
             }
         }
         return true;
     }
 }
+
 
