@@ -1,0 +1,25 @@
+public class NumerosPrimos {
+    public static Boolean numPrimo(int numero) {
+        if (numero <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(numero); i++){
+            if (numero % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        int somaPrimos = 0;
+
+        System.out.println("Números primos entre 1 e 100");
+        for (int i = 1; i <= 100; i++) {
+            if (numPrimo(i)) {
+                System.out.println(i +" ");
+                somaPrimos += i;
+            }
+        }
+        System.out.println("\nSoma dos números primos entre 1 e 100: " + somaPrimos);
+    }
+}
