@@ -1,0 +1,21 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class LerCSV {
+    public static void main(String[] args) {
+        String arquivoCSV = "dados.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoCSV))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                // Processar cada linha conforme necessário
+                String[] campos = linha.split(",");
+                // Por exemplo, imprimir o primeiro campo:
+                System.out.println("Valor do primeiro campo: " + campos[0]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
